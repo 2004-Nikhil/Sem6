@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .ball {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      border-radius: 50%;
+      position: absolute;
+      left: 0%;
+      top: 50%;
+      animation: bounce-forward 1s infinite ease-in-out;
+    }
+
+    @keyframes bounce-forward {
+      0% {
+        transform: translate(0, 0)scalex(2);
+      }
+
+      25% {
+        transform: translate(100px, -100px);
+        /* Moves forward and up */
+      }
+
+      50% {
+        transform: translate(200px, 0)scalex(2);
+        /* Moves further forward and down */
+      }
+
+      75% {
+        transform: translate(300px, -50px);
+        /* Moves forward again and slightly up */
+      }
+
+      100% {
+        transform: translate(400px, 0);
+        /* Lands further forward */
+      }
+    }
+
+    @keyframes bounce-back {
+      from {
+        transform: translate(400px, 0);
+      }
+      to {
+        transform: translate(0, 0);
+      }
+      
+    }
+    .ball.bouncing-back {
+      animation: bounce-back infinite forwards;
+      animation-duration: 1s;
+      background-color: blue; 
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ball"></div>
+  <div class="ball bouncing-back"></div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 15px;
+    border-bottom: 2px solid #000080;
+}
+
+section {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+table {
+    border: 1px solid #d26565;
+    background-color: #fff;
+}
+
+th {
+    background-color: #000080;
+    color: white;
+}
+
+ul {
+    padding-left: 20px;
+}
