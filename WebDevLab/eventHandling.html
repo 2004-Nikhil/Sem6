@@ -1,0 +1,26 @@
+<!-- Event Handling - Background Color Change: To create an html page to
+change the background color for every click of a button using javascript -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Change Background Color</button>
+    <script>
+        function randColor() {
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+        function changeBackgroundColor() {
+            document.body.style.backgroundColor = randColor();
+        }
+        document.getElementById('btn').addEventListener('click', changeBackgroundColor);
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+</head>
+
+<body>
+    <h2>Form Validation using addEventListener()</h2>
+    <form id="myForm">
+        Name: <input type="text" id="name"><br><br>
+        Email: <input type="text" id="email"><br><br>
+        Password: <input type="password" id="password"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            if (!name) {
+                alert("Name is required");
+                event.preventDefault(); // Prevents form submission
+            }
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                alert("Invalid email format");
+                event.preventDefault();
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters");
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

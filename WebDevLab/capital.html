@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Checkbox List</title>
+    <style>
+        .capital {
+            color: gold
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Select a Country:</h2>
+        <ul>
+            <li>
+                <input type="checkbox" id="india" onclick="toggleCapital('india')">
+                <label for="india">India</label>
+                <span class="capital" id="capital-india">New Delhi</span>
+            </li>
+            <li>
+                <input type="checkbox" id="usa" onclick="toggleCapital('usa')">
+                <label for="usa">USA</label>
+                <span class="capital" id="capital-usa">Washington, D.C.</span>
+            </li>
+            <li>
+                <input type="checkbox" id="france" onclick="toggleCapital('france')">
+                <label for="france">France</label>
+                <span class="capital" id="capital-france">Paris</span>
+            </li>
+            <li>
+                <input type="checkbox" id="japan" onclick="toggleCapital('japan')">
+                <label for="japan">Japan</label>
+                <span class="capital" id="capital-japan">Tokyo</span>
+            </li>
+            <li>
+                <input type="checkbox" id="brazil" onclick="toggleCapital('brazil')">
+                <label for="brazil">Brazil</label>
+                <span class="capital" id="capital-brazil">Brasília</span>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        function toggleCapital(country) {
+            const capital = document.getElementById(`capital-${country}`);
+            capital.style.display = capital.style.display === "none" ? "inline" : "none";
+        }
+
+        // Initially hide all capitals
+        document.querySelectorAll('.capital').forEach(capital => {
+            capital.style.display = "none";
+        });
+    </script>
+</body>
+</html>

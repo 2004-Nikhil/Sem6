@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+<body>
+
+    <div class="stopwatch-container">
+        <div id="timeDisplay">00:00:00</div>
+        <button id="startBtn" onclick="startStopwatch()">Start</button>
+        <button id="resetBtn" onclick="resetStopwatch()">Reset</button>
+        <button id="saveBtn" onclick="saveTime()">Save Time</button>
+    </div>
+
+    <script>
+        let timerInterval;
+        let time = 0; // time in seconds
+        let isRunning = false;
+
+        // Format time in HH:MM:SS
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const remainingSeconds = seconds % 60;
+            return `${pad(hours)}:${pad(minutes)}:${pad(remainingSeconds)}`;
+        }
+
+        // Pad single digits with leading zeros
+        function pad(num) {
+            return num < 10 ? `0${num}` : num;
+        }
+
+        // Update the displayed time
+        function updateDisplay() {
+            document.getElementById('timeDisplay').textContent = formatTime(time);
+        }
+
+        // Start the stopwatch
+        function startStopwatch() {
+            if (!isRunning) {
+                timerInterval = setInterval(() => {
+                    time++;
+                    updateDisplay();
+                }, 1000);
+                isRunning = true;
+                document.getElementById('startBtn').textContent = 'Pause';
+            } else {
+                clearInterval(timerInterval);
+                isRunning = false;
+                document.getElementById('startBtn').textContent = 'Resume';
+            }
+        }
+
+        // Reset the stopwatch
+        function resetStopwatch() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            time = 0;
+            updateDisplay();
+            document.getElementById('startBtn').textContent = 'Start';
+            const paragraphs = document.querySelectorAll('p');
+            paragraphs.forEach(p => p.remove());
+        }
+
+        function saveTime() {
+            const timeString = formatTime(time);
+            const paragraph = document.createElement('p');
+            paragraph.innerHTML = `Saved Time: ${timeString}`;
+            document.body.appendChild(paragraph);
+        }
+
+    </script>
+
+</body>
+</html>

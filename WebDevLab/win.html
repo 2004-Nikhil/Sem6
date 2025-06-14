@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Object Methods</title>
+    
+</head>
+<body>
+    <h2>JavaScript Window Object Methods</h2>
+    <button onclick="showAlert()">Alert</button><br/>
+    <button onclick="showPrompt()">Prompt</button><br/>
+    <button onclick="showConfirm()">Show Confirm</button><br/>
+    <button onclick="openNewWindow()">Open New Window</button><br/>
+    <button onclick="closeNewWindow()">Close New Window</button><br/>
+    <button onclick="printPage()">Print Page</button><br/>
+    <p id="output"></p>
+    <script>
+      function showAlert() {
+          alert("This is an alert");
+      }
+
+      function showPrompt() {
+          let name = prompt("What is your name?");
+          if (name) {
+              document.getElementById("output").innerText = "Hello, " + name;
+          }
+      }
+
+      function showConfirm() {
+          let response = confirm("Do you like JavaScript?");
+          document.getElementById("output").innerText = response ? "You like JavaScript!" : "You don't like JavaScript!";
+      }
+
+      let newWindow;
+      function openNewWindow() {
+          newWindow = window.open("https://www.example.com", "_blank", "width=600,height=400");
+      }
+
+      function closeNewWindow() {
+          if (newWindow) {
+              newWindow.close();
+          } else {
+              alert("No window to close!");
+          }
+      }
+
+      function printPage() {
+          window.print();
+      }
+  </script>
+</body>
+</html>

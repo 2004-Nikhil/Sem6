@@ -1,0 +1,73 @@
+<!-- Event Handling - calendar for the month and year by combo box: To 
+create an html page with 2 combo box populated with month & year, to 
+display the calendar  for the selected month & year from combo box using 
+javascript.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <input type="number" id="month" min="1" max="12" placeholder="Month (1-12)">
+    <input type="number" id="year" min="1970" max="2100" placeholder="Year">
+    <button onclick="generateCalendar()">Generate Calendar</button>
+    <div id="calendar"></div>
+    <script>
+        function generateCalendar() {
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
+            if (month < 1 || month > 12 || year < 1970 || year > 2100) {
+                alert("Please enter a valid month (1-12) and year (1970-2100).");
+                return;
+            }
+
+            const firstDay = new Date(year, month - 1, 1).getDay();
+            const daysInMonth = new Date(year, month, 0).getDate();
+            let calendarHTML = '<table><tr>';
+
+            // Create header for days of the week
+            const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            for (let day of daysOfWeek) {
+                calendarHTML += `<th>${day}</th>`;
+            }
+            calendarHTML += '</tr><tr>';
+
+            // Fill in the empty cells before the first day of the month
+            for (let i = 0; i < firstDay; i++) {
+                calendarHTML += '<td></td>';
+            }
+
+            // Fill in the days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                calendarHTML += `<td>${day}</td>`;
+                if ((day + firstDay) % 7 === 0) {
+                    calendarHTML += '</tr><tr>';
+                }
+            }
+
+            calendarHTML += '</tr></table>';
+            document.getElementById('calendar').innerHTML = calendarHTML;
+        }
+        const today = new Date();
+        document.getElementById('month').value = today.getMonth() + 1;
+        document.getElementById('year').value = today.getFullYear();
+        generateCalendar();
+    </script>
+    
+    
+</body>
+</html>
